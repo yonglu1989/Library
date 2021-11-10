@@ -3,6 +3,7 @@
 <head>
     <link rel="stylesheet" href="css/reset.css">
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <script src="src.js" defer></script>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -16,10 +17,32 @@
     </div>
     <div class="cards-container">
         <div class="card">
-            <div class="title-info">Title</div>
+            <div class="title-info">Title: Default</div>
             <div class="author-info">Author</div>
             <div class="pages-info">Pages</div>
             <div class="read-info">Read</div>
+        </div>
+    </div>
+    <div class="add-button">+</div>
+
+    <!-- Modal Section -->
+    <div class="bg-modal">
+        <div class="modal-content">
+            <div class="close-button">+</div>
+            <div>Add New Book</div>
+            <form action="">
+                <input type="text" placeholder="title">
+                <input type="text" placeholder="author">
+                <input type="number" placeholder="Number of Pages">
+                <div class="radio-container">
+                    <p>Have you read the Book?</p>
+                    <input type="radio" id="yes" name="read">
+                    <label for="yes">Yes</label>
+                    <input type="radio" id="no" name="read">
+                    <label for="no">No</label>
+                </div>
+                <a href="" class="submit-button">Submit</a>
+            </form>
         </div>
     </div>
 </body>
