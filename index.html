@@ -30,18 +30,18 @@
         <div class="modal-content">
             <div class="close-button">+</div>
             <div>Add New Book</div>
-            <form action="">
-                <input type="text" placeholder="title">
-                <input type="text" placeholder="author">
-                <input type="number" placeholder="Number of Pages">
+            <form action="" id="book-form">
+                <input type="text" id="title" placeholder="title" required>
+                <input type="text" id="author" placeholder="author" required>
+                <input type="number" id="number" placeholder="Number of Pages" required>
                 <div class="radio-container">
                     <p>Have you read the Book?</p>
-                    <input type="radio" id="yes" name="read">
+                    <input type="radio" id="yes" name="read" value="yes" required >
                     <label for="yes">Yes</label>
-                    <input type="radio" id="no" name="read">
+                    <input type="radio" id="no" name="read" value="no" required>
                     <label for="no">No</label>
                 </div>
-                <a href="" class="submit-button">Submit</a>
+                <input type="submit" value="submit" class="submit-button" name="submit">
             </form>
         </div>
     </div>
