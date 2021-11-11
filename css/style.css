@@ -19,7 +19,7 @@
 
 .cards-container {
     display: flex;
-    gap: 20px;
+    gap: 10px;
     padding: 30px;
     flex-flow: row wrap;
     justify-content: space-evenly;
@@ -30,7 +30,7 @@
     /* justify-content: space-between; */
     /* align-items: center; */
     background-color: #000000;
-    height: 400px;
+    height: 420px;
     width: 300px;
     padding: 5px;
     border-radius: 10px;
@@ -47,7 +47,7 @@
     font-size: 30px;
     background-color: #282A35;
     width: 300px;
-    height: 100px;
+    height: 70px;
     text-align: center;
 }
 
