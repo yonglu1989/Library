@@ -2,7 +2,7 @@
 The library project from [The Odin Project's website](https://www.theodinproject.com/paths/full-stack-javascript/courses/javascript/lessons/library).
 
 ## Basic Description
-Library website that allows you to add books.
+Library website that allows you to add books. Local Storage not yet implemented.
 
 ## Technologies
 - HTML
