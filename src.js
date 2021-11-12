@@ -147,12 +147,6 @@ function deleteCard(e) {
     updateIDS();
 }
 
-// Manually creating some books for now.
-addBookToLibrary("Legends of Smithy Jones", "Pen Island", 255, true);
-addBookToLibrary("Legends of King Arthur", "Pen Island", 255, true);
-addBookToLibrary("Legends of Grey Hound", "Pen Island", 255, true);
-displayBooks();
-
 addButton.addEventListener('click', () => {
     document.querySelector(".bg-modal").style.display = 'flex';
 });
