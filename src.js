@@ -24,10 +24,10 @@ function book(title, author, pages, read) {
     };
     this.update = function () {
         if (this.read == false) {
-            this.read == true;
+            this.read = true;
         }
-        else {
-            this.read == false;
+        else if(this.read == true){
+            this.read = false;
         }
     }
     this.updateID = function () {
@@ -82,6 +82,7 @@ function displayBooks() {
             cardDelete.classList.add('delete-info');
             card.classList.add('card');
             
+            cardUpdate.addEventListener('click', updateCard);
             cardDelete.addEventListener('click', deleteCard);
 
             cardUpdate.innerHTML = iconUpdate.outerHTML + "Update";
@@ -126,16 +127,22 @@ function submitDataForm(e) {
     closeForm();
 }
 
+// Update Read Status on mylibrary array and DOM
+function updateCard(e) {
+    let element = this.parentElement;
+    let dataIndex = element.getAttribute('data-index');
+    myLibrary[dataIndex].update();
+    element.children[3].textContent = "Read: " + myLibrary[dataIndex].read.toString();
+}   
+
+// Remove the element from the DOM
+// Remove the element from the library array and update the
+// data-attributes and ids.
 function deleteCard(e) {
     let element = this.parentElement;
     let dataIndex = element.getAttribute('data-index');
-    // console.log(this.parentElement.getAttribute('data-index'));
 
-    // Remove the element from the DOM
     element.remove();
-
-    // Remove the element from the library array and update the
-    // data-attributes and ids.
     myLibrary.splice(dataIndex, 1);
     updateIDS();
 }
