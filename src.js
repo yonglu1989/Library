@@ -11,6 +11,7 @@ function book(title, author, pages, read) {
     this.pages = pages;
     this.read = read;
     this.displayed = false;
+    this.indexID = myLibrary.length;
     this.info = function () {
         let res = "";
         if(this.read == true) {
@@ -21,6 +22,17 @@ function book(title, author, pages, read) {
         }
         return this.title + " by " + this.author + ", " + this.pages + " pages, " + res;
     };
+    this.update = function () {
+        if (this.read == false) {
+            this.read == true;
+        }
+        else {
+            this.read == false;
+        }
+    }
+    this.updateID = function () {
+        this.indexID = myLibrary.indexOf(this);
+    }
 }
 
 function addBookToLibrary(title, author, pages, read) {
@@ -33,6 +45,13 @@ function closeForm() {
     document.getElementById("book-form").reset();
 }
 
+function updateIDS() {
+    myLibrary.forEach((book) => {
+        let domCard = document.querySelector(`[data-index='${book.indexID}']`);
+        book.updateID();
+        domCard.setAttribute('data-index', book.indexID.toString());
+    });
+}
 function displayBooks() {
     for (let i = 0; i < myLibrary.length; i++) {
         if(myLibrary[i].displayed == false) {
@@ -41,22 +60,40 @@ function displayBooks() {
             let cardAuthor = document.createElement("div");
             let cardPages = document.createElement("div");
             let cardRead = document.createElement("div");
-    
+            let cardUpdate = document.createElement("div");
+            let cardDelete = document.createElement("div");
+            let iconUpdate = document.createElement("i");
+            let iconDelete = document.createElement("i");
+
             cardTitle.textContent = "Title: " + myLibrary[i].title.toString();
             cardAuthor.textContent = "Author: " + myLibrary[i].author.toString();
             cardPages.textContent = "Pages: " + myLibrary[i].pages.toString();
             cardRead.textContent = "Read: " + myLibrary[i].read.toString();
-    
+            iconUpdate.textContent = "edit";
+            iconDelete.textContent = "delete_forever";
+
+            iconUpdate.classList.add('material-icons', 'size');
+            iconDelete.classList.add('material-icons', 'size');
             cardTitle.classList.add('title-info');
             cardAuthor.classList.add('author-info');
             cardPages.classList.add('pages-info');
             cardRead.classList.add('read-info');
+            cardUpdate.classList.add('update-info');
+            cardDelete.classList.add('delete-info');
             card.classList.add('card');
-    
+            
+            cardDelete.addEventListener('click', deleteCard);
+
+            cardUpdate.innerHTML = iconUpdate.outerHTML + "Update";
+            cardDelete.innerHTML = iconDelete.outerHTML + "Delete";
+ 
             card.appendChild(cardTitle);
             card.appendChild(cardAuthor);
             card.appendChild(cardPages);
             card.appendChild(cardRead);
+            card.appendChild(cardUpdate);
+            card.appendChild(cardDelete);
+            card.setAttribute('data-index', myLibrary[i].indexID);
             cardsContainer.appendChild(card);
 
             myLibrary[i].displayed = true;
@@ -75,7 +112,6 @@ function submitDataForm(e) {
     let bRead = false;
     for (let i = 0; i < radios.length; i++) {
         if(radios[i].checked) {
-            console.log(radios[i].value);
             if (radios[i].value == "no"){
                 bRead = false;
             }
@@ -88,6 +124,20 @@ function submitDataForm(e) {
     addBookToLibrary(inputTitle, inputAuthor, inputPages, bRead);
     displayBooks();
     closeForm();
+}
+
+function deleteCard(e) {
+    let element = this.parentElement;
+    let dataIndex = element.getAttribute('data-index');
+    // console.log(this.parentElement.getAttribute('data-index'));
+
+    // Remove the element from the DOM
+    element.remove();
+
+    // Remove the element from the library array and update the
+    // data-attributes and ids.
+    myLibrary.splice(dataIndex, 1);
+    updateIDS();
 }
 
 // Manually creating some books for now.
