@@ -5,14 +5,50 @@ const closeButton    = document.querySelector(".close-button");
 const form           = document.getElementById("book-form");
 let myLibrary = [];
 
-function book(title, author, pages, read) {
-    this.title = title;
-    this.author = author;
-    this.pages = pages;
-    this.read = read;
-    this.displayed = false;
-    this.indexID = myLibrary.length;
-    this.info = function () {
+
+// Function style user-defined book object type
+// function book(title, author, pages, read) {
+//     this.title = title;
+//     this.author = author;
+//     this.pages = pages;
+//     this.read = read;
+//     this.displayed = false;
+//     this.indexID = myLibrary.length;
+//     this.info = function () {
+//         let res = "";
+//         if(this.read == true) {
+//             res = "Read already";
+//         }
+//         else {
+//             res = "not read yet";
+//         }
+//         return this.title + " by " + this.author + ", " + this.pages + " pages, " + res;
+//     };
+//     this.update = function () {
+//         if (this.read == false) {
+//             this.read = true;
+//         }
+//         else if(this.read == true){
+//             this.read = false;
+//         }
+//     }
+//     this.updateID = function () {
+//         this.indexID = myLibrary.indexOf(this);
+//     }
+// }
+
+// Class version of Book
+class book{
+    constructor(title, author, pages, read) {
+        this.title = title;
+        this.author = author;
+        this.pages = pages;
+        this.read = read;
+        this.displayed = false;
+        this.indexID = myLibrary.length;
+    }
+    
+    info = function () {
         let res = "";
         if(this.read == true) {
             res = "Read already";
@@ -22,7 +58,7 @@ function book(title, author, pages, read) {
         }
         return this.title + " by " + this.author + ", " + this.pages + " pages, " + res;
     };
-    this.update = function () {
+    update = function () {
         if (this.read == false) {
             this.read = true;
         }
@@ -30,7 +66,7 @@ function book(title, author, pages, read) {
             this.read = false;
         }
     }
-    this.updateID = function () {
+    updateID = function () {
         this.indexID = myLibrary.indexOf(this);
     }
 }
